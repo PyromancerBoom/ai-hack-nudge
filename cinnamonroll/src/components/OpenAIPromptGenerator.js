@@ -13,22 +13,25 @@ const endpoint = process.env.REACT_APP_ENDPOINT;
  * @returns {JSX.Element|null} The rendered list of recommendations or null if the API response is empty.
  */
 function renderAPIResponse(apiResponse) {
-  if (apiResponse === "") {
-    return null;
-  }
+  // if (apiResponse === "") {
+  //   return null;
+  // }
 
-  return (
-    <div className="flex flex-col">
-      <h3 className="text-lg text-gray-300 mt-4">
-        Okay we gotcha! Here are some recommendations:
-      </h3>
-      {apiResponse.split("\n").map((item, index) => (
-        <p key={index} className="text-base text-gray-300 mt-2">
-          {item}
-        </p>
-      ))}
-    </div>
-  );
+  // return (
+  //   <div className="flex flex-col max-w-250">
+  //     <h3 className="text-lg text-gray-300 mt-4">
+  //       Okay we gotcha! Here are some recommendations:
+  //     </h3>
+  //     {apiResponse.split("\n").map((item, index) => (
+  //       <p key={index} className="text-base text-gray-300 mt-2">
+  //         {item}
+  //       </p>
+  //     ))}
+  //   </div>
+  // );
+  // display all fields in the JSON response
+  console.log(apiResponse.webpages);
+  return apiResponse;
 }
 
 function createPrompt(userMessage) {
