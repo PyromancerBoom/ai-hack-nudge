@@ -22,7 +22,8 @@ const OpenAIPromptGenerator = () => {
     const APIBody = {
       model: "text-davinci-003",
       prompt:
-        "Give me some recommendations to learn the following:  " + userMessage, //input prompt here, other variables do not matter
+        "Give me some specific recommendations to learn the following:  " +
+        userMessage, //input prompt here, other variables do not matter
       temperature: 0,
       max_tokens: 60,
       top_p: 1.0,
@@ -67,7 +68,18 @@ const OpenAIPromptGenerator = () => {
         >
           Submit 🚀
         </button>
-        {aiResponse !== "" && <h3>The recommendations are: {aiResponse}</h3>}
+        {aiResponse !== "" && (
+          <div className="flex flex-col">
+            <h3 className="text-lg text-gray-300 mt-4">
+              Okay we gotcha! Here are some recommendations:
+            </h3>
+            {aiResponse.split("\n").map((item, index) => (
+              <p key={index} className="text-base text-gray-300 mt-2">
+                {item}
+              </p>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
