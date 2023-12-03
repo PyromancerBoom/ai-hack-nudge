@@ -52,10 +52,6 @@ const Demo = () => {
               text="Take you understanding to the next level "
               className=""
             />
-            <p className="my-4 text-lg font-medium md:text-sm sm:text-xs">
-              Enter your text below, generate questions, get recommendations{" "}
-              <br />{" "}
-            </p>
 
             <TextBoxInput />
           </div>
