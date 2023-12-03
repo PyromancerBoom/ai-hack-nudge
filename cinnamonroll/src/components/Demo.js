@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/Layout.js";
 import TextBoxInput from "../components/TextBoxInput";
 import { motion } from "framer-motion";
+import SubmitButton from "./SubmitButton.js";
 
 const Demo = () => {
   const MyHeading = ({ text, className = "" }) => {
@@ -54,6 +55,7 @@ const Demo = () => {
             />
 
             <TextBoxInput />
+            <SubmitButton />
           </div>
         </div>
       </Layout>
