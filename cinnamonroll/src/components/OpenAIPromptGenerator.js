@@ -1,11 +1,10 @@
-require("dotenv").config();
 import React, { useState } from "react";
 import TextBoxInput from "./TextBoxInput";
 
 // Bing Search V7 subscription key and endpoint
 // gets both from .env file
-const subscriptionKey = process.env.SUBSCRIPTION_KEY;
-const endpoint = process.env.ENDPOINT;
+const subscriptionKey = process.env.REACT_APP_SUBSCRIPTION_KEY;
+const endpoint = process.env.REACT_APP_ENDPOINT;
 
 /**
  * Renders the API response as a list of recommendations.
@@ -51,6 +50,7 @@ const OpenAIPromptGenerator = () => {
   const [aiResponse, setAIresponse] = useState("");
 
   async function callBingWebSearchAPI() {
+    console.log("Calling the Bing Web Search API endpoint...");
     const query = createPrompt(userMessage);
     const mkt = "en-US";
     const params = { q: query, mkt: mkt };
