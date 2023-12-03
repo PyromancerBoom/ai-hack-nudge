@@ -1,8 +1,11 @@
+require("dotenv").config();
 import React, { useState } from "react";
 import TextBoxInput from "./TextBoxInput";
 
-// OpenAI API key
-const API_KEY = "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"; // secure -> environment variable
+// Bing Search V7 subscription key and endpoint
+// gets both from .env file
+const subscriptionKey = process.env.SUBSCRIPTION_KEY;
+const endpoint = process.env.ENDPOINT;
 
 /**
  * Renders the API response as a list of recommendations.
@@ -47,40 +50,32 @@ const OpenAIPromptGenerator = () => {
   const [userMessage, setUserMessage] = useState("");
   const [aiResponse, setAIresponse] = useState("");
 
-  /**
-   * The function `callOpenAIAPI` makes a POST request to the OpenAI API to get an output of an input
-   * prompt. It uses the `fetch` function to send the request and receives the response in JSON format.
-   * The sentiment value is extracted from the response and stored in a variable called `sentiment`.
-   */
-  async function callOpenAIAPI() {
-    // console.log("Calling the OpenAI API");
+  async function callBingWebSearchAPI() {
+    const query = createPrompt(userMessage);
+    const mkt = "en-US";
+    const params = { q: query, mkt: mkt };
+    const headers = { "Ocp-Apim-Subscription-Key": subscriptionKey };
 
-    const APIBody = {
-      model: "text-davinci-003",
-      prompt: createPrompt(userMessage),
-      temperature: 0,
-      max_tokens: 60,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-    };
+    try {
+      const queryString = new URLSearchParams(params).toString();
+      const url = `${endpoint}?${queryString}`;
 
-    // API call
-    await fetch("https://api.openai.com/v1/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + API_KEY,
-      },
-      body: JSON.stringify(APIBody),
-    })
-      .then((data) => {
-        return data.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setAIresponse(data.choices[0].text.trim()); // Extract first element in data.choices array
-      });
+      await fetch(url, { headers: headers })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setAIresponse(JSON.stringify(data)); // Update the AI response state with the received data
+        })
+        .catch((error) => {
+          throw error;
+        });
+    } catch (error) {
+      throw error;
+    }
   }
 
   // console.log(userMessage);
@@ -92,7 +87,7 @@ const OpenAIPromptGenerator = () => {
       <div>
         <div className="py-4">
           <button
-            onClick={callOpenAIAPI}
+            onClick={callBingWebSearchAPI}
             className="rounded-lg px-3 py-0.5 border-1 border-gray-300 text-white bg-gray-900 hover:bg-gray-700 hover:text-white duration-300"
           >
             Submit 🚀
