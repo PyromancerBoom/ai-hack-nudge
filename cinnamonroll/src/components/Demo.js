@@ -1,8 +1,9 @@
 import React from "react";
 import Layout from "../components/Layout.js";
-import TextBoxInput from "../components/TextBoxInput";
+// import TextBoxInput from "../components/TextBoxInput";
 import { motion } from "framer-motion";
-import SubmitButton from "./SubmitButton.js";
+// import SubmitButton from "./SubmitButton.js";
+import OpenAIPromptGenerator from "./OpenAIPromptGenerator.js";
 
 const Demo = () => {
   const MyHeading = ({ text, className = "" }) => {
@@ -54,8 +55,7 @@ const Demo = () => {
               className=""
             />
 
-            <TextBoxInput />
-            <SubmitButton />
+            <OpenAIPromptGenerator />
           </div>
         </div>
       </Layout>

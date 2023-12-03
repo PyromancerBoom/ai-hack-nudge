@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextBoxInput = () => {
+const TextBoxInput = ({ setUserMessage }) => {
   return (
     <div className="w-full max-w-[80vw] mx-auto">
       <div className="flex items-center space-x-4">
@@ -24,6 +24,7 @@ const TextBoxInput = () => {
             name="textarea"
             id="textarea"
             placeholder="Enter message"
+            onChange={(e) => setUserMessage(e.target.value)}
           ></textarea>
         </div>
       </div>
