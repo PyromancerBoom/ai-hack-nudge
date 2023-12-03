@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextBoxInput from "./TextBoxInput";
 
-// modify API_KEY accordingly
+// OpenAI API key
 const API_KEY = "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"; // secure -> environment variable
 
 /**
@@ -29,9 +29,23 @@ function renderAPIResponse(apiResponse) {
   );
 }
 
+function createPrompt(userMessage) {
+  return (
+    "Give me some specific recommendations to learn the following with free resources online:  " +
+    userMessage
+  );
+}
+
+/**
+ * The `OpenAIPromptGenerator` component is a React component that renders a text box input and a submit button.
+ * When the submit button is clicked, the `callOpenAIAPI` function is called to make a POST request to the OpenAI API.
+ * The response from the API is then rendered as a list of recommendations.
+ * @returns {JSX.Element} The rendered React component.
+ *
+ */
 const OpenAIPromptGenerator = () => {
   const [userMessage, setUserMessage] = useState("");
-  const [aiResponse, setAIresponse] = useState(""); // "Negative" or "Positive"
+  const [aiResponse, setAIresponse] = useState("");
 
   /**
    * The function `callOpenAIAPI` makes a POST request to the OpenAI API to get an output of an input
@@ -39,16 +53,11 @@ const OpenAIPromptGenerator = () => {
    * The sentiment value is extracted from the response and stored in a variable called `sentiment`.
    */
   async function callOpenAIAPI() {
-    console.log("Calling the OpenAI API");
-
-    // For 0-10
-    // What is the sentiment of this tweet with a value between 0 and 10 (10 being its very positive)?
+    // console.log("Calling the OpenAI API");
 
     const APIBody = {
       model: "text-davinci-003",
-      prompt:
-        "Give me some specific recommendations to learn the following with free resources online:  " +
-        userMessage, //input prompt here, other variables do not matter
+      prompt: createPrompt(userMessage),
       temperature: 0,
       max_tokens: 60,
       top_p: 1.0,
@@ -56,6 +65,7 @@ const OpenAIPromptGenerator = () => {
       presence_penalty: 0.0,
     };
 
+    // API call
     await fetch("https://api.openai.com/v1/completions", {
       method: "POST",
       headers: {
@@ -73,9 +83,9 @@ const OpenAIPromptGenerator = () => {
       });
   }
 
-  console.log(userMessage);
+  // console.log(userMessage);
   return (
-    <div className="App">
+    <div className="">
       <div>
         <TextBoxInput setUserMessage={setUserMessage} />
       </div>
