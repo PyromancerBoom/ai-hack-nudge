@@ -8,8 +8,8 @@ const TextBoxInput = ({ setUserMessage }) => {
           className="text-gray-200 text-3xl font-bold leading-none"
           htmlFor="textarea"
         >
-          <p className="my-4 text-2xl md:text-sm sm:text-xs">
-            Enter your text below, generate questions, get recommendations{" "}
+          <p className="my-4 text-1xl">
+            Enter your info below, generate questions, get recommendations{" "}
             <br />{" "}
           </p>
         </label>

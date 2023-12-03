@@ -53,13 +53,6 @@ const OpenAIPromptGenerator = () => {
     <div className="App">
       <div>
         <TextBoxInput setUserMessage={setUserMessage} />
-        {/* Modify html textarea */}
-        {/* <textarea
-          onChange={(e) => setTweet(e.target.value)}
-          placeholder="Paste your tweet here!"
-          cols={50}
-          rows={10}
-        /> */}
       </div>
       <div>
         <button

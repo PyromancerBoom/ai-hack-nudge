@@ -11,12 +11,12 @@ const Demo = () => {
 
     return (
       <div
-        className="w-full mx-auto py-3 flex items-center justify-center text-center
+        className="w-full mx-auto pb-3 flex items-center justify-center text-center
             overflow-hidden"
       >
         <h1
           className={`inline-block w-full text-dark font-bold
-              text-6xl text-left
+              text-7xl text-left
               sm:!py-0
               xl:!text-4xl
               lg:!text-center
@@ -51,7 +51,7 @@ const Demo = () => {
 
           <div className="w-full flex flex-col items-center ">
             <MyHeading
-              text="Take you understanding to the next level "
+              text="Take your understanding to the next level "
               className=""
             />
 
