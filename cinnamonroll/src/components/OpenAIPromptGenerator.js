@@ -52,6 +52,7 @@ const OpenAIPromptGenerator = () => {
   /**
    * The function `callOpenAIAPI` makes a POST request to the OpenAI API to get an output of an input
    * prompt. It uses the `fetch` function to send the request and receives the response in JSON format.
+   * The list of question is extracted from the response and stored in a variable called `aiResponse`.
    */
   async function callOpenAIAPI() {
     // console.log("Calling the OpenAI API");
