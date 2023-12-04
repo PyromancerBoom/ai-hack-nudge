@@ -9,7 +9,7 @@ const API_KEY = "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"; // secure
  * Renders the API response as a feedback text.
  *
  * @param {string} feedback - The feedback received from the API.
- * @returns {JSX.Element|null} The rendered list of recommendations or null if the API response is empty.
+ * @returns {JSX.Element|null} The rendered feedback text or null if the API response is empty.
  */
 function renderFeedBack(input) {
   if (input === "") {
@@ -38,9 +38,9 @@ function createFeedBack(InputAnswer) {
 }
 
 /**
- * The `OpenAIPromptGenerator` component is a React component that renders a text box input and a submit button.
- * When the submit button is clicked, the `callOpenAIAPI` function is called to make a POST request to the OpenAI API.
- * The response from the API is then rendered as a list of recommendations.
+ * The `PromptGrader` component is a React component that renders a text box input and a submit button.
+ * When the submit button is clicked, the `RetrieveAnswer` function is called to make a POST request to the OpenAI API.
+ * The response from the API is then rendered as a feedback text to the given answer.
  * @returns {JSX.Element} The rendered React component.
  *
  */
@@ -49,9 +49,9 @@ const PromptGrader = () => {
   const [feedback, setFeedBack] = useState("");
 
   /**
-   * The function `callOpenAIAPI` makes a POST request to the OpenAI API to get an output of an input
+   * The function `RetrieveAnswer` makes a POST request to the OpenAI API to get an output of an input
    * prompt. It uses the `fetch` function to send the request and receives the response in JSON format.
-   * The sentiment value is extracted from the response and stored in a variable called `sentiment`.
+   * The feedback is extracted from the response and stored in a variable called `feedback`.
    */
   async function RetrieveAnswer() {
     // console.log("Calling the OpenAI API");
