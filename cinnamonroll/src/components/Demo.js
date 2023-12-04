@@ -1,9 +1,8 @@
 import React from "react";
 import Layout from "../components/Layout.js";
-// import TextBoxInput from "../components/TextBoxInput";
 import { motion } from "framer-motion";
-// import SubmitButton from "./SubmitButton.js";
 import OpenAIPromptGenerator from "./OpenAIPromptGenerator.js";
+import PromptGrader from "./PromptGrader.js";
 
 const Demo = () => {
   const MyHeading = ({ text, className = "" }) => {
@@ -47,15 +46,13 @@ const Demo = () => {
     <div>
       <Layout>
         <div className="flex items-center justify-between w-full">
-          {/* flex flex-col OR w-1/2 */}
-
           <div className="w-full flex flex-col items-center ">
             <MyHeading
               text="Take your understanding to the next level "
               className=""
             />
-
             <OpenAIPromptGenerator />
+            <PromptGrader />
           </div>
         </div>
       </Layout>
