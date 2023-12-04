@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TextBoxInput from "./TextBoxInput";
+import createPrompt from "./createPrompt";
 
 // OpenAI API key
 const API_KEY = "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"; // secure -> environment variable
@@ -29,11 +30,10 @@ function renderAPIResponse(apiResponse) {
   );
 }
 
-function createPrompt(userMessage) {
-  return (
-    "Give me some specific recommendations to learn the following with free resources online:  " +
-    userMessage
-  );
+function createResourcePrompt(userMessage) {
+  const promptMessage =
+    "Give me some specific recommendations to learn the following with free resources online:  ";
+  return createPrompt(promptMessage, userMessage);
 }
 
 /**
@@ -57,7 +57,7 @@ const OpenAIPromptGenerator = () => {
 
     const APIBody = {
       model: "text-davinci-003",
-      prompt: createPrompt(userMessage),
+      prompt: createResourcePrompt(userMessage),
       temperature: 0,
       max_tokens: 60,
       top_p: 1.0,
