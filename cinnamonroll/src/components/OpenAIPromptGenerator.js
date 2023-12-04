@@ -66,7 +66,12 @@ const OpenAIPromptGenerator = () => {
     const updatedHumanTextArray = [...humanTextArray];
     updatedHumanTextArray[index] = aiResponseArray[index];
     setHumanTextArray(updatedHumanTextArray);
-    setPressedN(pressedN + 1);
+
+    if (updatedPressedQuestions[index]) {
+      setPressedN(pressedN + 1);
+    } else {
+      setPressedN(pressedN - 1);
+    }
   };
 
   /**
@@ -131,7 +136,8 @@ const OpenAIPromptGenerator = () => {
             isPressed={pressedQuestions[index]}
           />
         ))}
-        {pressedN === aiResponseArray.length &&
+        {aiResponseArray.length != 0 &&
+          pressedN === aiResponseArray.length &&
           "You have satisfied all the questions!"}
         {/*allPressed && (
           <p className="text-base text-green-500 mt-4">
