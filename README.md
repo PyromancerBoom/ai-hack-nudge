@@ -44,12 +44,13 @@ Our web application has the following main features:
 
 ## Example <a name="example"></a>
 
-On entering the website, the user will be greeted with a home page that will prompt them to enter a topic or a topic paragraph.
+On entering the website, the user will be greeted with a home page that will prompt them to enter a topic or some text
 ![Example](/documentationImages/home.jpg)
 
-After entering the topic, the user will be greeted with 5 questions that will test their understanding on the topic.
-After answering the questions, the user will be provided with feedback on their understanding of the topic.
+After entering the topic, the user will be get 5 questions that will test their understanding of the topic and they can answer them.
 ![Example](/documentationImages/p1.jpg)
+
+The AI will then give them feedback on their understanding of the topic.
 ![Example](/documentationImages/p1-complete.jpg)
 
 They can mark it as complete and move on to the next question.
@@ -104,7 +105,9 @@ Unit and Integration Testing throught testing frameworks were not set up during 
 ## Challenges <a name="challenges"></a>
 
 > AI bugs/ wrong information
+
 > Time crunch
+
 > AI not free
 
 ## What's Next For Nudge <a name="misc"></a>
