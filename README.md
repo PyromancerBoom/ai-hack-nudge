@@ -27,8 +27,7 @@ Our web application has the following main features:
 
 # Azure Services
 
-> **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is to generate linked entities
-> during the feedback generation phase.
+> **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is used to generate Wikipedia-linked entities during the feedback generation phase. The AI detects nouns that have corresponding Wikipedia articles where users can condust further research on. Our team followed the documentation for using this service on Node.js through Azure AI's Text Analysis Client which we then returned as string through our [LinkedEntities](/cinnamonroll//src/components/LinkedEntities.js) function.
 
 > **Bing Resources** > _Bing Search_ is to generate recommended resources.
 
