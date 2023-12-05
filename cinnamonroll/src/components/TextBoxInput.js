@@ -16,8 +16,7 @@ const TextBoxInput = ({ setUserMessage }) => {
           htmlFor="textarea"
         >
           <p className="my-4 text-1xl">
-            Enter your info below, generate questions, get recommendations{" "}
-            <br />{" "}
+            Get personalised questions and tailored recommendations <br />{" "}
           </p>
         </label>
         <span className="px-1 py-1 rounded text-gray-800 text-sm font-medium leading-none bg-orange-600">
@@ -30,7 +29,7 @@ const TextBoxInput = ({ setUserMessage }) => {
             className="w-full h-64 rounded bg-gray-300 p-4 text-lg font-medium resize-y text-gray-800 leading-none focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-gray-100"
             name="textarea"
             id="textarea"
-            placeholder="Enter message"
+            placeholder="How are planets formed? What is the feynman technique?"
             onChange={(e) => setUserMessage(e.target.value)}
           ></textarea>
         </div>

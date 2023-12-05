@@ -65,11 +65,10 @@ const Demo = () => {
                 <span className="text-bold">
                   How it works - a seamless learning experience with AI!
                 </span>
-                <br /> 1. Input what you want to learn, and it generates
-                questions for you. You answer, and get feedback highlighting
-                important terms and linking them to reliable sources.
-                <br /> 2. And get upto 10 additional readings using Azure Bing
-                Search, offering a comprehensive learning journey in a snap!
+                <br /> 1. Input what you want to learn, get personalised
+                questions
+                <br /> 2. Answer the questions, get feedback
+                <br /> 3. And get tailored recommendations to learn more!
               </p>
             </div>
             <OpenAIPromptGenerator />
