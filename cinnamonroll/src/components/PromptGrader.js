@@ -51,9 +51,11 @@ function renderFeedBack(input, linked_entities, recommendations) {
           />
         );
       })}
-      <h3 className="text-2xl font-bold text-left text-gray-300 mt-4">
-        Recommendations for Further Reading:
-      </h3>
+      {recommendations && (
+        <h3 className="text-2xl font-bold text-left text-gray-300 mt-4">
+          Recommendations for Further Reading:
+        </h3>
+      )}
       {recommendations?.map((item, index) => {
         return (
           <p className="text-base text-gray-300 mt-2 text-left">
