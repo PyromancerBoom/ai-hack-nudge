@@ -36,7 +36,7 @@ Our web application has the following main features:
 > will respond with 5 questions that test your understanding
 > on the topic.
 > The User then has to answer those questions and AI will provide them
-> feedback on their understanding
+> feedback on their understanding.
 
 > **Recommendations** <a name="recom"></a>
 > The AI then also gives them recommendations
@@ -47,7 +47,7 @@ Our web application has the following main features:
 On entering the website, the user will be greeted with a home page that will prompt them to enter a topic or some text
 ![Example](/documentationImages/home.jpg)
 
-After entering the topic, the user will be get 5 questions that will test their understanding of the topic and they can answer them.
+After entering the topic, the user will receive 5 questions that will test their understanding of the topic and they can answer them.
 ![Example](/documentationImages/p1.jpg)
 
 The AI will then give them feedback on their understanding of the topic.
@@ -58,7 +58,7 @@ They can mark it as complete and move on to the next question.
 
 ## Azure Services <a name="azure"></a>
 
-> **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is used to generate Wikipedia-linked entities during the feedback generation phase. The AI detects nouns that have corresponding Wikipedia articles where users can conduct further research on. Our team followed the documentation for using this service on Node.js through Azure AI's Text Analysis Client which we then returned as string through our [LinkedEntities](/cinnamonroll//src/components/LinkedEntities.js) function.
+> **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is used to generate Wikipedia-linked entities during the feedback generation phase. The AI detects nouns that have corresponding Wikipedia articles where users can conduct further research. Our team followed the documentation for using this service on Node.js through Azure AI's Text Analysis Client which we then returned as a string through our [LinkedEntities](/cinnamonroll//src/components/LinkedEntities.js) function.
 
 > **Bing Resources** > _Bing Search_ is to generate recommended resources.
 
@@ -88,10 +88,10 @@ className={`rounded-lg px-3 py-0.5 border-1 border-gray-300 text-white ${
 ))}
 ```
 
-which is inferior to a Question object abstraction seen in our [Question](/cinnamonroll/src/components/Question.js) function. This is because by turning Question into a function, it is conveniently scalable for future use of a AI response requesting.
+which is inferior to a Question object abstraction seen in our [Question](/cinnamonroll/src/components/Question.js) function. This is because by turning Question into a function, it is conveniently scalable for future use of AI response requesting.
 
 **Demo Abstraction**
-Our team made it habit to avoid cluttering the main page. To achieve this, we created several different components stored in the component folder and implemented them in our [Demo](/cinnamonroll/src/components/Demo.js) page through parameterized import functions.
+Our team made it a habit to avoid cluttering the main page. To achieve this, we created several different components stored in the component folder and implemented them in our [Demo](/cinnamonroll/src/components/Demo.js) page through parameterized import functions.
 
 ###### DRYS Examples
 
@@ -100,24 +100,26 @@ An example of this can be seen in our [createPrompt](/cinnamonroll/src/component
 
 ## Testing <a name="test"></a>
 
-Unit and Integration Testing throught testing frameworks were not set up during the designing phase. However, User Testing through the usage of the `console.log()` function to display successful API calls and successful method runs proved invaluable for debugging errors. An example of a preventative measure for errors include the implementation of [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) statements to ensure that there are not any unnecessary API calls that will deny access permission.
+Unit and Integration Testing throughout testing frameworks were not set up during the designing phase. However, User Testing through the `console.log()` function to display successful API calls and successful method runs proved invaluable for debugging errors. An example of a preventative measure for errors includes the implementation of [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) statements to ensure that there are not any unnecessary API calls that will deny access permission.
 
 ## Challenges <a name="challenges"></a>
 
-> AI bugs/ wrong information
+AI bugs were the common errors we faced throughout the process of designing the web application. The prompt would have to be carefully constructed to ensure that the formatting of the AI response fits our team's requirements. Although quite rare, there were times when even with very specific prompts, the AI output would return wrong results such as blank questions. This is the reason why a better AI model would be desirable.
 
-> Time crunch
+Additionally, our team was under significant time pressure as our availability to start working on this application was hindered. We also received news of this Hackathon late into the submission period so we needed to act within a week.
 
-> AI not free
+Lastly, calls to the OpenAI API incurred a billing which meant that only a finite amount of queries could be done before we ran out of free access.
+
+Although there were several challenges, most of the challenges did not significantly change the course of action to such an extent that our team needed to change our primary design objectives.
 
 ## What's Next For Nudge <a name="misc"></a>
 
 > A backend server for storing user data.
 
-> An input for customizing the number of questions that can be generated with a maximum limit.
+> An input for customizing the number of questions generated with a maximum limit.
 
 > An upgrade to a better AI model to reduce the likelihood of informational errors.
 
-> A progress tracker to determine a users weakness and strengths.
+> A progress tracker to determine a user's weaknesses and strengths.
 
-> Adding more machine learning models to increase the dependency of the web application to multiple AI services.
+> Adding more machine learning models to increase the dependency of the web application on multiple AI services.
