@@ -1,6 +1,21 @@
-## Project Nudge
+# Project Nudge
 
-Nudge, our innovative web application, is designed with a singular mission: to revolutionize the way people of all ages and educational backgrounds engage with and comprehend complex concepts effectively and concisely. Rooted in the powerful Feynman technique, Nudge is not just a tool; **it's a learning companion that aspires to guide users through a journey of understanding within the framework of five carefully crafted questions.**
+### Table of Contents
+
+1. [About](#about)
+2. [Features](#features)
+   - [Personalised Questions and feedback](#persQues)
+   - [Recommendations](#recom)
+3. [Example](#example)
+4. [Azure Services](#azure)
+5. [Software Engineering Practices](#swepractice)
+6. [Testing](#test)
+7. [Challenges](#challenges)
+8. [What's next?](#misc)
+
+## About <a name="about"></a>
+
+Nudge, our innovative web application, is designed with an innovative mission: to revolutionize the way people of all ages and educational backgrounds engage with and comprehend complex concepts effectively and concisely. Rooted in the powerful Feynman technique, Nudge is not just a tool; **it's a learning companion that aspires to guide users through a journey of understanding within the framework of five carefully crafted questions.**
 
 At its core, the Feynman technique is a proven learning methodology consisting of four transformative steps: selecting a concept, teaching it to a child, reviewing and refining understanding, and organizing notes for regular revisitation. Nudge takes inspiration from these steps, focusing primarily on the initial three to create an immersive learning experience.
 
@@ -10,28 +25,41 @@ More than just a learning tool, Nudge is built on the fundamental belief that le
 
 Embark on a learning adventure with Nudge, where the pursuit of knowledge is transformed into an enjoyable and enlightening experience.
 
-## Features
+## Features <a name="features"></a>
 
 Our web application has the following main features:
 
-> **Question Generator**
+> **Personalised Questions and feedback** <a name="persQues"></a>
 > User will input a topic or a topic paragraph and the AI
 > will respond with 5 questions that test your understanding
 > on the topic.
+> The User then has to answer those questions and AI will provide them
+> feedback on their understanding
 
-> **Linked Entities Generator**
-> After feedback is generated, proper nouns contained in the
-> feedback will be clickable links to their wikipedia pages.
+> **Recommendations** <a name="recom"></a>
+> The AI then also gives them recommendations
+> as clickable links to learn more!
 
-## Functionalities
+## Example <a name="example"></a>
 
-## Azure Services
+On entering the website, the user will be greeted with a home page that will prompt them to enter a topic or a topic paragraph.
+![Example](/documentationImages/home.jpg)
+
+After entering the topic, the user will be greeted with 5 questions that will test their understanding on the topic.
+After answering the questions, the user will be provided with feedback on their understanding of the topic.
+![Example](/documentationImages/p1.jpg)
+![Example](/documentationImages/p1-complete.jpg)
+
+They can mark it as complete and move on to the next question.
+![Example](/documentationImages/further.jpg)
+
+## Azure Services <a name="about"></a>
 
 > **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is used to generate Wikipedia-linked entities during the feedback generation phase. The AI detects nouns that have corresponding Wikipedia articles where users can conduct further research on. Our team followed the documentation for using this service on Node.js through Azure AI's Text Analysis Client which we then returned as string through our [LinkedEntities](/cinnamonroll//src/components/LinkedEntities.js) function.
 
 > **Bing Resources** > _Bing Search_ is to generate recommended resources.
 
-## Software Engineering Practices
+## Software Engineering Practices <a name="swepractice"></a>
 
 ###### Abstraction Examples
 
@@ -67,11 +95,11 @@ Our team made it habit to avoid cluttering the main page. To achieve this, we cr
 [DRYS](https://www.baeldung.com/cs/dry-software-design-principle#:~:text=Definition,only%20once%20in%20the%20codebase.) denotes the concept of utilizing functional programming to avoid repeated code.
 An example of this can be seen in our [createPrompt](/cinnamonroll/src/components/createPrompt.js) function that was implemented instead of unnecessary rewriting of the same code.
 
-## Testing
+## Testing <a name="test"></a>
 
 Unit and Integration Testing throught testing frameworks were not set up during the designing phase. However, User Testing through the usage of the `console.log()` function to display successful API calls and successful method runs proved invaluable for debugging errors. An example of a preventative measure for errors include the implementation of [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) statements to ensure that there are not any unnecessary API calls that will deny access permission.
 
-## Challenges
+## Challenges <a name="challenges"></a>
 
 > AI bugs/ wrong information
 > Time crunch
