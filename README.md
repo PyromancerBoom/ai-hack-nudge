@@ -107,11 +107,7 @@ Unit and Integration Testing throught testing frameworks were not set up during 
 > Time crunch
 > AI not free
 
-## Accomplishments
-
-## What we learned
-
-## What's Next For Nudge
+## What's Next For Nudge <a name="misc"></a>
 
 > A backend server for storing user data.
 
