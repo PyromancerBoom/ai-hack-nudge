@@ -1,4 +1,4 @@
-import createPrompt from "./createPrompt";
+import mergePrompt from "./mergePrompt";
 const subscriptionKey = process.env.REACT_APP_BING_SEARCH_KEY;
 const endpoint = process.env.REACT_APP_BING_SEARCH_URL;
 
@@ -10,7 +10,7 @@ const get_Bing_Search = async (text_input) => {
   const createPrompt = (text_input) => {
     const promptMessage =
       "Give me some specific recommendations to learn the following with free resources online:  ";
-    return createPrompt(promptMessage, text_input);
+    return mergePrompt(promptMessage, text_input);
   };
 
   console.log(text_input);
