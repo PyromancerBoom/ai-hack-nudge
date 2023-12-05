@@ -87,8 +87,6 @@ const OpenAIPromptGenerator = () => {
    * The list of question is extracted from the response and stored in a variable called `aiResponse`.
    */
   async function callOpenAIAPI() {
-    console.log(API_KEY);
-
     if (!userMessage || userMessage === "") {
       setErrorMessage("Cannot be empty!");
       return;
