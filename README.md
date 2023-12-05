@@ -4,7 +4,7 @@ Deployed Project: [projectnudge.vercel.app/](https://projectnudge.vercel.app/)
 
 ### Table of Contents
 
-1. [About](#about)
+1. [About and re-imagining future of education](#about)
 2. [Features](#features)
    - [Personalised Questions and feedback](#persQues)
    - [Recommendations](#recom)
@@ -15,7 +15,7 @@ Deployed Project: [projectnudge.vercel.app/](https://projectnudge.vercel.app/)
 7. [Challenges](#challenges)
 8. [What's next?](#misc)
 
-## About <a name="about"></a>
+## About and re-imagining future of education <a name="about"></a>
 
 Nudge, our innovative web application, is designed with an innovative mission: to revolutionize the way people of all ages and educational backgrounds engage with and comprehend complex concepts effectively and concisely. Rooted in the powerful Feynman technique, Nudge is not just a tool; **it's a learning companion that aspires to guide users through a journey of understanding within the framework of five carefully crafted questions.**
 
