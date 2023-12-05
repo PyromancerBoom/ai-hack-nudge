@@ -8,7 +8,7 @@ Deployed Project: [projectnudge.vercel.app/](https://projectnudge.vercel.app/)
 2. [Features](#features)
    - [Personalised Questions and feedback](#persQues)
    - [Recommendations](#recom)
-3. [Example](#example)
+3. [Demo](#example)
 4. [Azure Services](#azure)
 5. [Software Engineering Practices](#swepractice)
 6. [Testing](#test)
@@ -42,7 +42,7 @@ Our web application has the following main features:
 > The AI then also gives them recommendations
 > as clickable links to learn more!
 
-## Example <a name="example"></a>
+## Demo <a name="example"></a>
 
 On entering the website, the user will be greeted with a home page that will prompt them to enter a topic or some text
 ![Example](/documentationImages/home.jpg)
