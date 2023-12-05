@@ -25,7 +25,9 @@ function renderFeedBack(input, linked_entities) {
 
   return (
     <div className="flex flex-col">
-      <h3 className="text-lg text-gray-300 mt-4">Here are your feedback:</h3>
+      <h3 className="text-2xl font-bold text-left text-gray-300 mt-4">
+        Here are your feedback:
+      </h3>
       {input.split("\n").map((item, index) => {
         let new_item = item.replace(regex, (match) => {
           // Find the entity object that matches the matched phrase
@@ -43,7 +45,7 @@ function renderFeedBack(input, linked_entities) {
         return (
           <p
             key={index}
-            className="text-base text-gray-300 mt-2"
+            className="text-base text-gray-300 mt-2 text-left mb-4"
             dangerouslySetInnerHTML={{ __html: new_item }}
           />
         );
@@ -52,9 +54,12 @@ function renderFeedBack(input, linked_entities) {
   );
 }
 
-function createFeedBack(InputAnswer) {
+function createFeedBack(OriginalText, Question, InputAnswer) {
   return (
-    " As a supportive and kind teacher, identify any misconceptions and clarify those mistakes from the following answer : " +
+    "Only based on this text: {" +
+    OriginalText +
+    "}\nAs a supportive and kind teacher, identify any misconceptions and clarify those mistakes from the following Question and answer : " +
+    Question +
     InputAnswer
   );
 }
@@ -66,10 +71,11 @@ function createFeedBack(InputAnswer) {
  * @returns {JSX.Element} The rendered React component.
  *
  */
-const PromptGrader = () => {
+const PromptGrader = (props) => {
   const [InputAnswer, setInputAnswer] = useState("");
   const [feedback, setFeedBack] = useState("");
   const [linkedEntities, setLinkedEntities] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (feedback === "") {
@@ -89,11 +95,18 @@ const PromptGrader = () => {
    * The feedback is extracted from the response and stored in a variable called `feedback`.
    */
   async function RetrieveAnswer() {
+    if (!InputAnswer || InputAnswer == "") {
+      setErrorMessage("Cannot be empty!");
+      return;
+    }
+
+    setErrorMessage("");
+
     // console.log("Calling the OpenAI API");
     // might need to remove max token or else the last questions are cut
     const APIBody = {
       model: "text-davinci-003",
-      prompt: createFeedBack(InputAnswer),
+      prompt: createFeedBack(props.OriginalText, props.Question, InputAnswer),
       max_tokens: 1000,
       temperature: 0,
       top_p: 1.0,
@@ -110,18 +123,27 @@ const PromptGrader = () => {
       },
       body: JSON.stringify(APIBody),
     })
-      .then((data) => {
-        return data.json();
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
       })
       .then((data) => {
         console.log(data);
         setFeedBack(data.choices[0].text.trim()); // Extract first element in data.choices array
+      })
+      .catch((error) => {
+        console.log(
+          "There has been a problem with your fetch operation: " + error.message
+        );
       });
   }
   return (
     <div className="">
       <div>
         <AnswerInput setInputAnswer={setInputAnswer} />
+        {errorMessage && <p className="text-base">{errorMessage}</p>}
       </div>
       <div>
         <div className="py-4">

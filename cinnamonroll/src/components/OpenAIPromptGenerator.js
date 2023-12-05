@@ -57,6 +57,7 @@ const OpenAIPromptGenerator = () => {
     new Array(aiResponseArray.length).fill(false)
   );
   const [pressedN, setPressedN] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleButtonPress = (index) => {
     const updatedPressedQuestions = [...pressedQuestions];
@@ -80,6 +81,11 @@ const OpenAIPromptGenerator = () => {
    * The list of question is extracted from the response and stored in a variable called `aiResponse`.
    */
   async function callOpenAIAPI() {
+    if (!userMessage || userMessage == "") {
+      setErrorMessage("Cannot be empty!");
+      return;
+    }
+
     // console.log("Calling the OpenAI API");
     const APIBody = {
       model: "text-davinci-003",
@@ -100,24 +106,33 @@ const OpenAIPromptGenerator = () => {
       },
       body: JSON.stringify(APIBody),
     })
-      .then((data) => {
-        return data.json();
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
       })
       .then((data) => {
         console.log(data);
         let returnedData = data.choices[0].text.trim(); // Extract first element in data.choices array
         console.log("this is the data", returnedData);
         let returnedDataArray = returnedData.split("\n");
-        returnedDataArray.pop();
+        // returnedDataArray.pop();
         setAIresponseArray(returnedDataArray);
-        //console.log("returnedData " + aiResponseArray);
+        console.log("returnedData " + aiResponseArray);
         setAIresponseString(returnedData);
+      })
+      .catch((error) => {
+        console.log(
+          "There has been a problem with your fetch operation: " + error.message
+        );
       });
   }
   return (
     <div className="">
       <div>
         <TextBoxInput setUserMessage={setUserMessage} />
+        {errorMessage && <p className="text-base">{errorMessage}</p>}
       </div>
       <div>
         <div className="py-4">
@@ -131,6 +146,7 @@ const OpenAIPromptGenerator = () => {
         {aiResponseArray.map((question, index) => (
           <Question
             key={index}
+            originalText={userMessage}
             question={question}
             index={index}
             handleButtonPress={handleButtonPress}
