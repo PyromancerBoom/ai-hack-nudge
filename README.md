@@ -10,7 +10,7 @@ More than just a learning tool, Nudge is built on the fundamental belief that le
 
 Embark on a learning adventure with Nudge, where the pursuit of knowledge is transformed into an enjoyable and enlightening experience.
 
-# Features
+## Features
 
 Our web application has the following main features:
 
@@ -23,15 +23,15 @@ Our web application has the following main features:
 > After feedback is generated, proper nouns contained in the
 > feedback will be clickable links to their wikipedia pages.
 
-# Functionalities
+## Functionalities
 
-# Azure Services
+## Azure Services
 
-> **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is used to generate Wikipedia-linked entities during the feedback generation phase. The AI detects nouns that have corresponding Wikipedia articles where users can condust further research on. Our team followed the documentation for using this service on Node.js through Azure AI's Text Analysis Client which we then returned as string through our [LinkedEntities](/cinnamonroll//src/components/LinkedEntities.js) function.
+> **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is used to generate Wikipedia-linked entities during the feedback generation phase. The AI detects nouns that have corresponding Wikipedia articles where users can conduct further research on. Our team followed the documentation for using this service on Node.js through Azure AI's Text Analysis Client which we then returned as string through our [LinkedEntities](/cinnamonroll//src/components/LinkedEntities.js) function.
 
 > **Bing Resources** > _Bing Search_ is to generate recommended resources.
 
-# Software Engineering Practices
+## Software Engineering Practices
 
 ###### Abstraction Examples
 
@@ -67,7 +67,7 @@ Our team made it habit to avoid cluttering the main page. To achieve this, we cr
 [DRYS](https://www.baeldung.com/cs/dry-software-design-principle#:~:text=Definition,only%20once%20in%20the%20codebase.) denotes the concept of utilizing functional programming to avoid repeated code.
 An example of this can be seen in our [createPrompt](/cinnamonroll/src/components/createPrompt.js) function that was implemented instead of unnecessary rewriting of the same code.
 
-# Testing
+## Testing
 
 Unit and Integration Testing throught testing frameworks were not set up during the designing phase. However, User Testing through the usage of the `console.log()` function to display successful API calls and successful method runs proved invaluable for debugging errors. An example of a preventative measure for errors include the implementation of [try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) statements to ensure that there are not any unnecessary API calls that will deny access permission.
 
