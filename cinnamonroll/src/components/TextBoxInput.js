@@ -29,7 +29,7 @@ const TextBoxInput = ({ setUserMessage }) => {
             className="w-full h-64 rounded bg-gray-300 p-4 text-lg font-medium resize-y text-gray-800 leading-none focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-gray-100"
             name="textarea"
             id="textarea"
-            placeholder="How are planets formed? What is the feynman technique?"
+            placeholder="Planet formation, feynman technique, fermi paradox, etc."
             onChange={(e) => setUserMessage(e.target.value)}
           ></textarea>
         </div>
