@@ -1,5 +1,7 @@
 # Project Nudge
 
+Deployed Project: [projectnudge.vercel.app/](https://projectnudge.vercel.app/)
+
 ### Table of Contents
 
 1. [About](#about)
@@ -53,7 +55,7 @@ After answering the questions, the user will be provided with feedback on their 
 They can mark it as complete and move on to the next question.
 ![Example](/documentationImages/further.jpg)
 
-## Azure Services <a name="about"></a>
+## Azure Services <a name="azure"></a>
 
 > **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is used to generate Wikipedia-linked entities during the feedback generation phase. The AI detects nouns that have corresponding Wikipedia articles where users can conduct further research on. Our team followed the documentation for using this service on Node.js through Azure AI's Text Analysis Client which we then returned as string through our [LinkedEntities](/cinnamonroll//src/components/LinkedEntities.js) function.
 
