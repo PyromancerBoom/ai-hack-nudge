@@ -7,7 +7,7 @@ const get_Bing_Search = async (text_input) => {
   if (text_input === "") {
     return [];
   }
-  const createPrompt = (text_input) => {
+  const createBingPrompt = (text_input) => {
     const promptMessage =
       "Give me some specific recommendations to learn the following with free resources online:  ";
     return createPrompt(promptMessage, text_input);
@@ -16,7 +16,7 @@ const get_Bing_Search = async (text_input) => {
   console.log(text_input);
 
   console.log("Calling the Bing Web Search API endpoint...");
-  const query = createPrompt(text_input);
+  const query = createBingPrompt(text_input);
   const mkt = "en-US";
   const params = { q: query, mkt: mkt };
   const headers = { "Ocp-Apim-Subscription-Key": subscriptionKey };
