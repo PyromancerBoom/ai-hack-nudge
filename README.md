@@ -58,9 +58,9 @@ They can mark it as complete and move on to the next question.
 
 ## Azure Services <a name="azure"></a>
 
-> **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is used to generate Wikipedia-linked entities during the feedback generation phase. The AI detects nouns that have corresponding Wikipedia articles where users can conduct further research. Our team followed the documentation for using this service on Node.js through Azure AI's Text Analysis Client which we then returned as a string through our [LinkedEntities](/cinnamonroll//src/components/LinkedEntities.js) function.
+> **Azure AI | Language Studio: Find Linked Entities:** [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is used to generate Wikipedia-linked entities during the feedback generation phase. The AI detects nouns that have corresponding Wikipedia articles where users can conduct further research. Our team followed the documentation for using this service on Node.js through Azure AI's Text Analysis Client which we then returned as a string through our [LinkedEntities](/cinnamonroll//src/components/LinkedEntities.js) function.
 
-> **Bing Resources** > _Bing Search_ is to generate recommended resources.
+> **Bing Resources:** [_Bing Search_](/cinnamonroll/src/components/BingSearch.js) is used to generate recommended resources through a call to Bing's browser search function.
 
 ## Software Engineering Practices <a name="swepractice"></a>
 
