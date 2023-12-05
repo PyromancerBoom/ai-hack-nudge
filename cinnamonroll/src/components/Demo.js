@@ -59,8 +59,18 @@ const Demo = () => {
               <h1 className="my-0 text-6xl font-bold">
                 Project <span className="text-cyan-500">Nudge</span>
               </h1>
-              <h2 className="my-4">...to nudge you in the right direction</h2>
+              <h2 className="mb-4">...to nudge you in the right direction</h2>
               <MyHeading text="Learn better with Nudge!" className="" />
+              <p className="text-left text-1xl text-gray-400">
+                <span className="text-bold">
+                  How it works - a seamless learning experience with AI!
+                </span>
+                <br /> 1. Input what you want to learn, and it generates
+                questions for you. You answer, and get feedback highlighting
+                important terms and linking them to reliable sources.
+                <br /> 2. And get upto 10 additional readings using Azure Bing
+                Search, offering a comprehensive learning journey in a snap!
+              </p>
             </div>
             <OpenAIPromptGenerator />
             {/*<PromptGrader />*/}

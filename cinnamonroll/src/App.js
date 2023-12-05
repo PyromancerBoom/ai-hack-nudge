@@ -1,12 +1,13 @@
 import "./App.css";
 import Demo from "./components/Demo";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="App bg-black">
-      <header className="App-header bg-black">
-        <Demo />
-      </header>
+    <div className="App bg-black App-header">
+      <header className=""></header>
+      <Demo />
+      <Footer />
     </div>
   );
 }
