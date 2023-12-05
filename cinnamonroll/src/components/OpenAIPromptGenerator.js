@@ -3,32 +3,32 @@ import TextBoxInput from "./TextBoxInput";
 import Question from "./Question";
 
 // OpenAI API key
-const API_KEY = "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"; // secure -> environment variable
+const API_KEY = process.env.REACT_APP_OPENAI_API_KEY; // secure -> environment variable
 
-/**
- * Renders the API response as a list of questions.
- *
- * @param {string} apiResponse - The response received from the API.
- * @returns {JSX.Element|null} The rendered list of questions or null if the API response is empty.
- */
-function renderAPIResponse(apiResponse) {
-  if (apiResponse === "") {
-    return null;
-  }
+// /**
+//  * Renders the API response as a list of questions.
+//  *
+//  * @param {string} apiResponse - The response received from the API.
+//  * @returns {JSX.Element|null} The rendered list of questions or null if the API response is empty.
+//  */
+// function renderAPIResponse(apiResponse) {
+//   if (apiResponse === "") {
+//     return null;
+//   }
 
-  return (
-    <div className="flex flex-col">
-      <h3 className="text-lg text-gray-300 mt-4">
-        Okay we gotcha! Here are some questions:
-      </h3>
-      {apiResponse.split("\n").map((item, index) => (
-        <p key={index} className="text-base text-gray-300 mt-2">
-          {item}
-        </p>
-      ))}
-    </div>
-  );
-}
+//   return (
+//     <div className="flex flex-col">
+//       <h3 className="text-lg text-gray-300 mt-4">
+//         Okay we gotcha! Here are some questions:
+//       </h3>
+//       {apiResponse.split("\n").map((item, index) => (
+//         <p key={index} className="text-base text-gray-300 mt-2">
+//           {item}
+//         </p>
+//       ))}
+//     </div>
+//   );
+// }
 
 function createPrompt(userMessage) {
   return (
@@ -81,7 +81,9 @@ const OpenAIPromptGenerator = () => {
    * The list of question is extracted from the response and stored in a variable called `aiResponse`.
    */
   async function callOpenAIAPI() {
-    if (!userMessage || userMessage == "") {
+    console.log(process.env);
+
+    if (!userMessage || userMessage === "") {
       setErrorMessage("Cannot be empty!");
       return;
     }
@@ -153,7 +155,7 @@ const OpenAIPromptGenerator = () => {
             isPressed={pressedQuestions[index]}
           />
         ))}
-        {aiResponseArray.length != 0 &&
+        {aiResponseArray.length !== 0 &&
           pressedN === aiResponseArray.length &&
           "You have satisfied all the questions!"}
         {/*allPressed && (

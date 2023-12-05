@@ -5,7 +5,7 @@ import get_linked_entities from "./LinkedEntities";
 import get_Bing_Search from "./BingSearch";
 
 // OpenAI API key
-const API_KEY = "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"; // secure -> environment variable
+const API_KEY = process.env.REACT_APP_OPENAI_API_KEY; // secure -> environment variable
 
 /**
  * Renders the API response as a feedback text.

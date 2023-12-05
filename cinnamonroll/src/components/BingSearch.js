@@ -1,5 +1,5 @@
-const subscriptionKey = "73a6c82bd16b4c13b1de8c3bd24ae86f";
-const endpoint = "https://api.bing.microsoft.com/v7.0/search";
+const subscriptionKey = process.env.REACT_APP_BING_SEARCH_KEY;
+const endpoint = process.env.REACT_APP_BING_SEARCH_URL;
 
 // Async version
 const get_Bing_Search = async (text_input) => {
