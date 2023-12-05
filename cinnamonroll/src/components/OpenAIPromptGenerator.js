@@ -75,6 +75,12 @@ const OpenAIPromptGenerator = () => {
     }
   };
 
+  // Page reload function
+  function refreshPage() {
+    window.location.reload(false);
+    window.scrollTo(0, 0);
+  }
+
   /**
    * The function `callOpenAIAPI` makes a POST request to the OpenAI API to get an output of an input
    * prompt. It uses the `fetch` function to send the request and receives the response in JSON format.
@@ -159,8 +165,14 @@ const OpenAIPromptGenerator = () => {
           />
         ))}
         {aiResponseArray.length !== 0 &&
-          pressedN === aiResponseArray.length &&
-          "You have satisfied all the questions!"}
+          pressedN === aiResponseArray.length && (
+            <button
+              onClick={refreshPage}
+              className="rounded-lg px-3 py-0.5 mt-12 border-1 border-gray-300 text-white bg-gray-900 hover:bg-gray-700 hover:text-white duration-300"
+            >
+              Retry with another text 🔄
+            </button>
+          )}
         {/*allPressed && (
           <p className="text-base text-green-500 mt-4">
             All questions have been pressed!
