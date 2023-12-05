@@ -119,8 +119,11 @@ const OpenAIPromptGenerator = () => {
         let returnedData = data.choices[0].text.trim(); // Extract first element in data.choices array
         console.log("this is the data", returnedData);
         let returnedDataArray = returnedData.split("\n");
+        let filteredArray = returnedDataArray.filter((item) =>
+          /^\d/.test(item)
+        );
         // returnedDataArray.pop();
-        setAIresponseArray(returnedDataArray);
+        setAIresponseArray(filteredArray);
         console.log("returnedData " + aiResponseArray);
         setAIresponseString(returnedData);
       })

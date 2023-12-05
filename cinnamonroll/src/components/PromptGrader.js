@@ -58,7 +58,10 @@ function renderFeedBack(input, linked_entities, recommendations) {
       )}
       {recommendations?.map((item, index) => {
         return (
-          <p className="text-base text-gray-300 mt-2 text-left">
+          <p
+            className="text-base text-gray-300 mt-2 text-left"
+            key={"recommend" + index}
+          >
             <a href={item.url} target="_blank" key={index}>
               <u>{item.name}</u>
             </a>
