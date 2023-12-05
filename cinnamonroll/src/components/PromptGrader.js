@@ -74,10 +74,12 @@ function renderFeedBack(input, linked_entities, recommendations) {
 
 function createFeedBack(OriginalText, Question, InputAnswer) {
   return (
-    "Only based on this text: {" +
+    "Only based on this text:\n" +
     OriginalText +
-    "}\nAs a supportive and kind teacher, identify any misconceptions and clarify those mistakes from the following Question and answer : " +
+    "\nAs a supportive and kind teacher, identify any misconceptions and clarify those mistakes from the following Question and answer :" +
+    "\nQuestion: " +
     Question +
+    "\nAnswer: " +
     InputAnswer
   );
 }

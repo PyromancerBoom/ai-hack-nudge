@@ -87,8 +87,6 @@ const OpenAIPromptGenerator = () => {
    * The list of question is extracted from the response and stored in a variable called `aiResponse`.
    */
   async function callOpenAIAPI() {
-    console.log(process.env);
-
     if (!userMessage || userMessage === "") {
       setErrorMessage("Cannot be empty!");
       return;
@@ -164,15 +162,14 @@ const OpenAIPromptGenerator = () => {
             isPressed={pressedQuestions[index]}
           />
         ))}
-        {aiResponseArray.length !== 0 &&
-          pressedN === aiResponseArray.length && (
-            <button
-              onClick={refreshPage}
-              className="rounded-lg px-3 py-0.5 mt-12 border-1 border-gray-300 text-white bg-gray-900 hover:bg-gray-700 hover:text-white duration-300"
-            >
-              Retry with another text 🔄
-            </button>
-          )}
+        {aiResponseArray.length !== 0 && (
+          <button
+            onClick={refreshPage}
+            className="rounded-lg px-3 py-0.5 mt-12 border-1 border-gray-300 text-white bg-gray-900 hover:bg-gray-700 hover:text-white duration-300"
+          >
+            Retry with another text 🔄
+          </button>
+        )}
         {/*allPressed && (
           <p className="text-base text-green-500 mt-4">
             All questions have been pressed!
