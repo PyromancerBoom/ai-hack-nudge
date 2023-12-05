@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import AnswerInput from "./AnswerInput";
 import get_linked_entities from "./LinkedEntities";
+import get_Bing_Search from "./BingSearch";
 
 // OpenAI API key
 const API_KEY = "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"; // secure -> environment variable
@@ -12,7 +13,7 @@ const API_KEY = "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"; // secure
  * @param {string} feedback - The feedback received from the API.
  * @returns {JSX.Element|null} The rendered feedback text or null if the API response is empty.
  */
-function renderFeedBack(input, linked_entities) {
+function renderFeedBack(input, linked_entities, recommendations) {
   if (input === "") {
     return null;
   }
@@ -24,9 +25,9 @@ function renderFeedBack(input, linked_entities) {
   const regex = new RegExp(phrases.join("|"), "g");
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-4">
       <h3 className="text-2xl font-bold text-left text-gray-300 mt-4">
-        Here are your feedback:
+        Here is your feedback:
       </h3>
       {input.split("\n").map((item, index) => {
         let new_item = item.replace(regex, (match) => {
@@ -45,9 +46,21 @@ function renderFeedBack(input, linked_entities) {
         return (
           <p
             key={index}
-            className="text-base text-gray-300 mt-2 text-left mb-4"
+            className="text-base text-gray-300 mt-2 text-left"
             dangerouslySetInnerHTML={{ __html: new_item }}
           />
+        );
+      })}
+      <h3 className="text-2xl font-bold text-left text-gray-300 mt-4">
+        Recommendations for Further Reading:
+      </h3>
+      {recommendations?.map((item, index) => {
+        return (
+          <p className="text-base text-gray-300 mt-2 text-left">
+            <a href={item.url} target="_blank" key={index}>
+              <u>{item.name}</u>
+            </a>
+          </p>
         );
       })}
     </div>
@@ -76,6 +89,7 @@ const PromptGrader = (props) => {
   const [feedback, setFeedBack] = useState("");
   const [linkedEntities, setLinkedEntities] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
     if (feedback === "") {
@@ -83,7 +97,9 @@ const PromptGrader = (props) => {
     }
     const fetchData = async () => {
       const result = await get_linked_entities(feedback);
+      const recommends = await get_Bing_Search(feedback);
       setLinkedEntities(result);
+      setRecommendations(recommends.slice(0, 3));
     };
 
     fetchData();
@@ -154,7 +170,7 @@ const PromptGrader = (props) => {
             Test my Understanding ✅
           </button>
         </div>
-        {renderFeedBack(feedback, linkedEntities)}
+        {renderFeedBack(feedback, linkedEntities, recommendations)}
       </div>
     </div>
   );
