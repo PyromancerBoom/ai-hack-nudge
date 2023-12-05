@@ -1,5 +1,12 @@
 import React from "react";
 
+/**
+ * TextBoxInput component for user input.
+ *
+ * @param {Object} props - The component props.
+ * @param {Function} props.setUserMessage - Callback function to set the user message.
+ * @returns {JSX.Element} The rendered TextBoxInput component.
+ */
 const TextBoxInput = ({ setUserMessage }) => {
   return (
     <div className="w-full max-w-[80vw] mx-auto">
