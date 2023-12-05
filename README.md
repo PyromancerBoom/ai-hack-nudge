@@ -7,3 +7,5 @@ What does Nudge do? It aims to utilise Feynman technique to nudge you for a good
 # Functionalities
 
 # Azure Services
+
+# Screenshots in actions

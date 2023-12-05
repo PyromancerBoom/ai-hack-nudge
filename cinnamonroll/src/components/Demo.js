@@ -5,12 +5,20 @@ import OpenAIPromptGenerator from "./OpenAIPromptGenerator.js";
 import PromptGrader from "./PromptGrader.js";
 
 const Demo = () => {
+  /**
+   * Renders a heading component with animated characters (typing effect)
+   *
+   * @param props - The component props.
+   * @param props.text - The text to be displayed.
+   * @param props.className - Additional CSS class for the component.
+   * @returns {JSX.Element} The rendered heading component.
+   */
   const MyHeading = ({ text, className = "" }) => {
     const characters = text.split("");
 
     return (
       <div
-        className="w-full mx-auto pb-3 flex items-center justify-center text-center
+        className="w-full mx-auto pb-6 mb-14 flex items-center justify-center text-center
             overflow-hidden"
       >
         <h1
@@ -47,10 +55,11 @@ const Demo = () => {
       <Layout>
         <div className="flex items-center justify-between w-full">
           <div className="w-full flex flex-col items-center ">
-            <MyHeading
-              text="Take your understanding to the next level "
-              className=""
-            />
+            <div className="my-4">
+              <h1 className="text-6xl font-bold">Nudge</h1>
+              <h2>...to nudge you in the right direction</h2>
+              <MyHeading text="Learn better with Nudge!" className="" />
+            </div>
             <OpenAIPromptGenerator />
             {/*<PromptGrader />*/}
           </div>
