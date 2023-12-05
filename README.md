@@ -35,6 +35,7 @@ Our web application has the following main features:
 # Software Engineering Practices
 
 **Abstraction Examples**
+
 **Question**
 `Question.js` is an abstraction of a Question function used to map
 onto each of the 5 questions generated. An previously implemented inferior design of the AI response in the [OpenAIPromptGenerator](/cinnamonroll//src/OpenAIPromptGenerator.js) file is:
