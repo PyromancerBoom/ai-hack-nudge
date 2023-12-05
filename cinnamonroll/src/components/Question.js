@@ -10,8 +10,7 @@ const Question = ({ question, index, handleButtonPress, isPressed }) => {
 
   return (
     <div className="flex flex-col mt-4">
-      <h3 className="text-lg text-gray-300">Question {index + 1}:</h3>
-      <p className="text-base text-black-300 mt-2">{question}</p>
+      <h3 className="text-lg text-gray-300">Question {question}</h3>
       <PromptGrader />
       <button
         onClick={() => handleButtonPress(index)}

@@ -32,7 +32,7 @@ function renderAPIResponse(apiResponse) {
 
 function createPrompt(userMessage) {
   return (
-    "make sure you only include questions after each question, ad a question mark and mark '(*)' to indicate that the question is finished (with no numbering)" +
+    "make sure you only include questions and that each question is complete (always include ?) with no numbering" +
     "Try to minimize the number of questions to cover the topic, if it needs more than 5 questions, limit it to 5 if not just provide how many needed" +
     " As a teacher to a student , Ask questions to test understanding about following input : " +
     userMessage
@@ -106,7 +106,8 @@ const OpenAIPromptGenerator = () => {
       .then((data) => {
         console.log(data);
         let returnedData = data.choices[0].text.trim(); // Extract first element in data.choices array
-        let returnedDataArray = returnedData.split("(*)");
+        console.log("this is the data", returnedData);
+        let returnedDataArray = returnedData.split("\n");
         returnedDataArray.pop();
         setAIresponseArray(returnedDataArray);
         //console.log("returnedData " + aiResponseArray);
