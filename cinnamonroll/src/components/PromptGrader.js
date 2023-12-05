@@ -1,6 +1,7 @@
 // New component for rating answers
-import React, { useState } from "react";
-import AnswerInput from "./AnswerInput"
+import React, { useState, useEffect } from "react";
+import AnswerInput from "./AnswerInput";
+import get_linked_entities from "./LinkedEntities";
 
 // OpenAI API key
 const API_KEY = "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"; // secure -> environment variable
@@ -11,29 +12,50 @@ const API_KEY = "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"; // secure
  * @param {string} feedback - The feedback received from the API.
  * @returns {JSX.Element|null} The rendered feedback text or null if the API response is empty.
  */
-function renderFeedBack(input) {
+function renderFeedBack(input, linked_entities) {
   if (input === "") {
     return null;
   }
 
+  // Extract the 'name' fields from the linked_entities objects into an array of phrases
+  const phrases = linked_entities.map((entity) => entity.name);
+
+  // Create a regular expression that matches the linked entities exactly
+  const regex = new RegExp(phrases.join("|"), "g");
+
   return (
     <div className="flex flex-col">
-      <h3 className="text-lg text-gray-300 mt-4">
-        Here are your feedback:
-      </h3>
-      {input.split("\n").map((item, index) => (
-        <p key={index} className="text-base text-gray-300 mt-2">
-          {item}
-        </p>
-      ))}
+      <h3 className="text-lg text-gray-300 mt-4">Here are your feedback:</h3>
+      {input.split("\n").map((item, index) => {
+        let new_item = item.replace(regex, (match) => {
+          // Find the entity object that matches the matched phrase
+          const entity = linked_entities.find(
+            (entity) => entity.name === match
+          );
+          // If the entity is not undefined, return an anchor tag with the URL and the matched phrase
+          if (entity) {
+            return `<a href="${entity.url}" target="_blank"><u>${match}</u></a>`;
+          } else {
+            // If the entity is undefined, return the matched phrase
+            return match;
+          }
+        });
+        return (
+          <p
+            key={index}
+            className="text-base text-gray-300 mt-2"
+            dangerouslySetInnerHTML={{ __html: new_item }}
+          />
+        );
+      })}
     </div>
   );
 }
 
 function createFeedBack(InputAnswer) {
-  return ( 
+  return (
     " As a supportive and kind teacher, identify any misconceptions and clarify those mistakes from the following answer : " +
-    InputAnswer 
+    InputAnswer
   );
 }
 
@@ -47,6 +69,19 @@ function createFeedBack(InputAnswer) {
 const PromptGrader = () => {
   const [InputAnswer, setInputAnswer] = useState("");
   const [feedback, setFeedBack] = useState("");
+  const [linkedEntities, setLinkedEntities] = useState([]);
+
+  useEffect(() => {
+    if (feedback === "") {
+      return;
+    }
+    const fetchData = async () => {
+      const result = await get_linked_entities(feedback);
+      setLinkedEntities(result);
+    };
+
+    fetchData();
+  }, [feedback]);
 
   /**
    * The function `RetrieveAnswer` makes a POST request to the OpenAI API to get an output of an input
@@ -79,7 +114,7 @@ const PromptGrader = () => {
         return data.json();
       })
       .then((data) => {
-        console.log(data)
+        console.log(data);
         setFeedBack(data.choices[0].text.trim()); // Extract first element in data.choices array
       });
   }
@@ -97,14 +132,10 @@ const PromptGrader = () => {
             Test my Understanding ✅
           </button>
         </div>
-        {renderFeedBack(feedback)}
+        {renderFeedBack(feedback, linkedEntities)}
       </div>
     </div>
   );
 };
-
-
-
-
 
 export default PromptGrader;

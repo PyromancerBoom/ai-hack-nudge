@@ -52,7 +52,7 @@ const Demo = () => {
               className=""
             />
             <OpenAIPromptGenerator />
-            <PromptGrader />
+            {/*<PromptGrader />*/}
           </div>
         </div>
       </Layout>
