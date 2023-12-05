@@ -27,7 +27,39 @@ Our web application has the following main features:
 
 # Azure Services
 
-> **Azure AI | Language Studio: Find Linked Entities** > _Find Linked Entities_ is to generate linked entities
+> **Azure AI | Language Studio: Find Linked Entities**
+> [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is to generate linked entities
 > during the feedback generation phase.
 
 > **Bing Resources** > _Bing Search_ is to generate recommended resources.
+
+# Software Engineering Practices
+
+**Abstraction Examples**
+**Question**
+`Question.js` is an abstraction of a Question function used to map
+onto each of the 5 questions generated. An previously implemented inferior design of the AI response in the [OpenAIPromptGenerator](/cinnamonroll//src/OpenAIPromptGenerator.js) file is:
+'{aiResponseArray.map((question, index) => (
+<div key={index} className="flex flex-col mt-4">
+<h3 className="text-lg text-gray-300">
+Question {index + 1}:
+</h3>
+<p className="text-base text-gray-300 mt-2">{question}</p>
+<button
+onClick={() => handleButtonPress(index)}
+className={`rounded-lg px-3 py-0.5 border-1 border-gray-300 text-white ${
+                pressedQuestions[index] ? "bg-green-500" : "bg-gray-900"
+              } hover:bg-gray-700 hover:text-white duration-300`} >
+{pressedQuestions[index] ? "Pressed" : "Press Me"}
+</button>
+</div>
+))}
+'
+which is inferior to a Question object abstraction seen in our [Question](/cinnamonroll/src/components/Question.js) function.
+
+**Demo Abstraction**
+Our team made it habit to avoid cluttering the main page. To achieve this, we created several different components stored in the component folder and implemented them in our [Demo](/cinnamonroll/src/components/Demo.js) page through parameterized import functions.
+
+**DRYS Examples**
+[DRYS](https://www.baeldung.com/cs/dry-software-design-principle#:~:text=Definition,only%20once%20in%20the%20codebase.) denotes the concept of utilizing functional programming to avoid repeated code.
+An example of this can be seen in our [createPrompt](/cinnamonroll/src/components/createPrompt.js) function that was implemented instead of unnecessary rewriting of the same code.
