@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/Layout.js";
 import { motion } from "framer-motion";
 import OpenAIPromptGenerator from "./OpenAIPromptGenerator.js";
-import PromptGrader from "./PromptGrader.js";
+// import PromptGrader from "./PromptGrader.js";
 
 const Demo = () => {
   /**
@@ -53,11 +53,13 @@ const Demo = () => {
   return (
     <div>
       <Layout>
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full text-white">
           <div className="w-full flex flex-col items-center ">
             <div className="my-4">
-              <h1 className="text-6xl font-bold">Nudge</h1>
-              <h2>...to nudge you in the right direction</h2>
+              <h1 className="my-0 text-6xl font-bold">
+                Project <span className="text-cyan-500">Nudge</span>
+              </h1>
+              <h2 className="my-4">...to nudge you in the right direction</h2>
               <MyHeading text="Learn better with Nudge!" className="" />
             </div>
             <OpenAIPromptGenerator />
