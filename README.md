@@ -48,13 +48,14 @@ On entering the website, the user will be greeted with a home page that will pro
 ![Example](/documentationImages/home.jpg)
 
 After entering the topic, the user will receive 5 questions that will test their understanding of the topic and they can answer them.
-![Example](/documentationImages/p1.jpg)
+![image](https://github.com/PyromancerBoom/ai-hack-nudge/assets/58062202/7097747b-3abb-403b-b35c-5cb5f722b01b)
 
 The AI will then give them feedback on their understanding of the topic.
-![Example](/documentationImages/p1-complete.jpg)
+![image](https://github.com/PyromancerBoom/ai-hack-nudge/assets/58062202/5818b3c3-4284-42af-947d-d00b2efd32cc)
 
-They can mark it as complete and move on to the next question.
-![Example](/documentationImages/further.jpg)
+Once finished they can choose to retry with another text.
+![image](https://github.com/PyromancerBoom/ai-hack-nudge/assets/58062202/8ac142c0-41e9-4d3d-a3e7-ae22dcc757c3)
+
 
 ## Azure Services <a name="azure"></a>
 
