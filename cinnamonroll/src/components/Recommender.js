@@ -3,7 +3,7 @@ import React from "react";
 const Recommender = () => {
   return (
     <div>
-      <h1>Recommneded Resources:</h1>
+      <h1>Recommended Resources:</h1>
     </div>
   );
 };

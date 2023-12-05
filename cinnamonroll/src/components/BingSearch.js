@@ -1,3 +1,4 @@
+import createPrompt from "./createPrompt";
 const subscriptionKey = process.env.REACT_APP_BING_SEARCH_KEY;
 const endpoint = process.env.REACT_APP_BING_SEARCH_URL;
 
@@ -7,10 +8,9 @@ const get_Bing_Search = async (text_input) => {
     return [];
   }
   const createPrompt = (text_input) => {
-    return (
-      "Give me some specific recommendations to learn the following with free resources online:  " +
-      text_input
-    );
+    const promptMessage =
+      "Give me some specific recommendations to learn the following with free resources online:  ";
+    return createPrompt(promptMessage, text_input);
   };
 
   console.log(text_input);
