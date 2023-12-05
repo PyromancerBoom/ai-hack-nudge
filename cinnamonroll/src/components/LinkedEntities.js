@@ -4,8 +4,8 @@ import {
 } from "@azure/ai-language-text";
 
 // Azure AI key
-const key = "4a655ecf4f484b7399313def84613308";
-const endpoint = "https://testout.cognitiveservices.azure.com/";
+const key = process.env.REACT_APP_LINKED_ENTITIES_KEY;
+const endpoint = process.env.REACT_APP_LINKED_ENTITIES_URL;
 
 // Async version
 const get_linked_entities = async (text_input) => {

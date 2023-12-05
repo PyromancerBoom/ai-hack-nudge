@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import PromptGrader from "./PromptGrader";
 
-const Question = ({ question, index, handleButtonPress, isPressed }) => {
+const Question = ({
+  originalText,
+  question,
+  index,
+  handleButtonPress,
+  isPressed,
+}) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e) => {
@@ -9,9 +15,9 @@ const Question = ({ question, index, handleButtonPress, isPressed }) => {
   };
 
   return (
-    <div className="flex flex-col mt-4">
-      <h3 className="text-lg text-gray-300">Question {question}</h3>
-      <PromptGrader />
+    <div className="flex flex-col mt-8">
+      <p className="text-3xl text-gray-300 font-bold">Question {question}</p>
+      <PromptGrader OriginalText={originalText} Question={question} />
       <button
         onClick={() => handleButtonPress(index)}
         className={`rounded-lg px-3 py-0.5 border-1 border-gray-300 text-white ${

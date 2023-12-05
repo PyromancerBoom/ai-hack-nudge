@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from "react";
 import AnswerInput from "./AnswerInput";
 import get_linked_entities from "./LinkedEntities";
+import get_Bing_Search from "./BingSearch";
 
 // OpenAI API key
-const API_KEY = "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"; // secure -> environment variable
+const API_KEY = process.env.REACT_APP_OPENAI_API_KEY; // secure -> environment variable
 
 /**
  * Renders the API response as a feedback text.
@@ -12,7 +13,7 @@ const API_KEY = "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"; // secure
  * @param {string} feedback - The feedback received from the API.
  * @returns {JSX.Element|null} The rendered feedback text or null if the API response is empty.
  */
-function renderFeedBack(input, linked_entities) {
+function renderFeedBack(input, linked_entities, recommendations) {
   if (input === "") {
     return null;
   }
@@ -24,8 +25,10 @@ function renderFeedBack(input, linked_entities) {
   const regex = new RegExp(phrases.join("|"), "g");
 
   return (
-    <div className="flex flex-col">
-      <h3 className="text-lg text-gray-300 mt-4">Here are your feedback:</h3>
+    <div className="flex flex-col mb-4">
+      <h3 className="text-2xl font-bold text-left text-gray-300 mt-4">
+        Here is your feedback:
+      </h3>
       {input.split("\n").map((item, index) => {
         let new_item = item.replace(regex, (match) => {
           // Find the entity object that matches the matched phrase
@@ -43,18 +46,35 @@ function renderFeedBack(input, linked_entities) {
         return (
           <p
             key={index}
-            className="text-base text-gray-300 mt-2"
+            className="text-base text-gray-300 mt-2 text-left"
             dangerouslySetInnerHTML={{ __html: new_item }}
           />
+        );
+      })}
+      {recommendations && (
+        <h3 className="text-2xl font-bold text-left text-gray-300 mt-4">
+          Recommendations for Further Reading:
+        </h3>
+      )}
+      {recommendations?.map((item, index) => {
+        return (
+          <p className="text-base text-gray-300 mt-2 text-left">
+            <a href={item.url} target="_blank" key={index}>
+              <u>{item.name}</u>
+            </a>
+          </p>
         );
       })}
     </div>
   );
 }
 
-function createFeedBack(InputAnswer) {
+function createFeedBack(OriginalText, Question, InputAnswer) {
   return (
-    " As a supportive and kind teacher, identify any misconceptions and clarify those mistakes from the following answer : " +
+    "Only based on this text: {" +
+    OriginalText +
+    "}\nAs a supportive and kind teacher, identify any misconceptions and clarify those mistakes from the following Question and answer : " +
+    Question +
     InputAnswer
   );
 }
@@ -66,10 +86,12 @@ function createFeedBack(InputAnswer) {
  * @returns {JSX.Element} The rendered React component.
  *
  */
-const PromptGrader = () => {
+const PromptGrader = (props) => {
   const [InputAnswer, setInputAnswer] = useState("");
   const [feedback, setFeedBack] = useState("");
   const [linkedEntities, setLinkedEntities] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
     if (feedback === "") {
@@ -77,7 +99,9 @@ const PromptGrader = () => {
     }
     const fetchData = async () => {
       const result = await get_linked_entities(feedback);
+      const recommends = await get_Bing_Search(feedback);
       setLinkedEntities(result);
+      setRecommendations(recommends.slice(0, 3));
     };
 
     fetchData();
@@ -89,11 +113,18 @@ const PromptGrader = () => {
    * The feedback is extracted from the response and stored in a variable called `feedback`.
    */
   async function RetrieveAnswer() {
+    if (!InputAnswer || InputAnswer == "") {
+      setErrorMessage("Cannot be empty!");
+      return;
+    }
+
+    setErrorMessage("");
+
     // console.log("Calling the OpenAI API");
     // might need to remove max token or else the last questions are cut
     const APIBody = {
       model: "text-davinci-003",
-      prompt: createFeedBack(InputAnswer),
+      prompt: createFeedBack(props.OriginalText, props.Question, InputAnswer),
       max_tokens: 1000,
       temperature: 0,
       top_p: 1.0,
@@ -110,18 +141,27 @@ const PromptGrader = () => {
       },
       body: JSON.stringify(APIBody),
     })
-      .then((data) => {
-        return data.json();
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
       })
       .then((data) => {
         console.log(data);
         setFeedBack(data.choices[0].text.trim()); // Extract first element in data.choices array
+      })
+      .catch((error) => {
+        console.log(
+          "There has been a problem with your fetch operation: " + error.message
+        );
       });
   }
   return (
     <div className="">
       <div>
         <AnswerInput setInputAnswer={setInputAnswer} />
+        {errorMessage && <p className="text-base">{errorMessage}</p>}
       </div>
       <div>
         <div className="py-4">
@@ -132,7 +172,7 @@ const PromptGrader = () => {
             Test my Understanding ✅
           </button>
         </div>
-        {renderFeedBack(feedback, linkedEntities)}
+        {renderFeedBack(feedback, linkedEntities, recommendations)}
       </div>
     </div>
   );
