@@ -27,8 +27,7 @@ Our web application has the following main features:
 
 # Azure Services
 
-> **Azure AI | Language Studio: Find Linked Entities**
-> [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is to generate linked entities
+> **Azure AI | Language Studio: Find Linked Entities** > [_Find Linked Entities_](https://language.cognitive.azure.com/tryout/linkedEntities) is to generate linked entities
 > during the feedback generation phase.
 
 > **Bing Resources** > _Bing Search_ is to generate recommended resources.
@@ -39,7 +38,9 @@ Our web application has the following main features:
 **Question**
 `Question.js` is an abstraction of a Question function used to map
 onto each of the 5 questions generated. An previously implemented inferior design of the AI response in the [OpenAIPromptGenerator](/cinnamonroll//src/OpenAIPromptGenerator.js) file is:
-'{aiResponseArray.map((question, index) => (
+
+```
+{aiResponseArray.map((question, index) => (
 <div key={index} className="flex flex-col mt-4">
 <h3 className="text-lg text-gray-300">
 Question {index + 1}:
@@ -54,7 +55,8 @@ className={`rounded-lg px-3 py-0.5 border-1 border-gray-300 text-white ${
 </button>
 </div>
 ))}
-'
+```
+
 which is inferior to a Question object abstraction seen in our [Question](/cinnamonroll/src/components/Question.js) function.
 
 **Demo Abstraction**
